@@ -248,6 +248,19 @@ document.getElementById("vegetarian").addEventListener("change", (e) => {
 document
   .getElementById("generate-shopping-list")
   .addEventListener("click", () => {
+
+    if (isBudgetFriendly || isVegetarian) {
+      alert("what are u doing");
+      return;
+      
+    }
+
+     // alles unten ausgegraut wegen hier return die return statemtns berbuggen alles ,amche ich hweg 
+    else {
+      alert("still what are u doing?")
+      return;
+    }
+
     const shoppingList = document.getElementById("shopping-list");
     shoppingList.innerHTML = "";
     selectedFoods = [];
@@ -258,6 +271,8 @@ document
     if (isBudgetFriendly) {
       filteredFoods = filteredFoods.sort((a, b) => a.price - b.price);
     }
+
+    
 
     if (isVegetarian) {
       filteredFoods = filteredFoods.filter((food) => food.vegetarian);
