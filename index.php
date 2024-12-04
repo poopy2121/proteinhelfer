@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +16,14 @@
                 <button id="closedialog">close</button>
                 <div id="welcome-message"></div> <!-- Placeholder for the welcome message -->
 
-    <form id="login-form" action="login.php" method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit" name="submit">Login</button>
-    </form>
+        <p>Welcome "👋" </p>
+
+    <!-- Login form -->
+        <form id="login-form" action="" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" id="login-button">Login</button>
+        </form>
 
             </dialog>
     </div>
@@ -50,3 +55,13 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<?php
+
+session_start();
+ if (isset($_SESSION['username'])) {
+    echo "hi " . htmlspecialchars($_SESSION['username']) . "👋";
+}
+
+?>
+

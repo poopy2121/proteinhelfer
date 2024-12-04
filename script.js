@@ -371,3 +371,23 @@ closebtn.addEventListener('click', function() {
   dialog.close();
   
 })
+
+document.addEventListener("DOMContentLoaded", function () {
+  const loginBtn = document.getElementById("loginbtn");
+  const dialog = document.getElementById("dialog");
+
+  // Show dialog when login button is clicked
+  loginBtn.addEventListener("click", () => {
+    dialog.showModal();
+  });
+
+  // Close dialog
+  document.getElementById("closedialog").addEventListener("click", () => {
+    dialog.close();
+  });
+
+  // Hide login button if user is logged in
+  if (document.getElementById("welcome-message").innerHTML.trim() !== "") {
+    loginBtn.style.display = "none";
+  }
+});

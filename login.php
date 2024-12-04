@@ -20,12 +20,16 @@ if (isset($_POST['submit'])) {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
+
+        header("Location: index.php");
     
-        echo  "hi " .  $username . " 👋"; }
+        echo  "hi " .  $username . " "; }
         else {
             echo "login not succesful. invalid rusername or password";
         }
     }
+
+
 ?>
 
 
