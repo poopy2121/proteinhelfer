@@ -1,5 +1,13 @@
 <?php
-session_start(); ?>
+session_start();
+if (isset($_SESSION['successMessage'])) {
+    echo  ($_SESSION['successMessage']);
+
+    
+   
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,16 +29,9 @@ session_start(); ?>
             <button type="submit" id="login-button">Login</button>
         </form>
 
-    <?php if (isset($_SESSION['success'])) {
-        echo $_SESSION['success'];
-        
-
-    } ?>
+   
 
     </div>
-
-<?php if(isset($sucessLogin)) echo $sucessLogin;
-?>
 
     <section id="goals-section">
         <h2>Set Your Daily Goals</h2>
