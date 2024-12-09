@@ -1,5 +1,5 @@
-
-
+<?php
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,22 +11,26 @@
 <body>
     <div class="überschrift">
             <h1>protein helper</h1>
-                <button id="loginbtn">login</button>
-            <dialog id="dialog">
-                <button id="closedialog">close</button>
                 <div id="welcome-message"></div> <!-- Placeholder for the welcome message -->
 
-        <p>Welcome "👋" </p>
 
     <!-- Login form -->
-        <form id="login-form" action="" method="post">
+        <form id="login-form" action="login.php" method="post">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit" id="login-button">Login</button>
         </form>
 
-            </dialog>
+    <?php if (isset($_SESSION['success'])) {
+        echo $_SESSION['success'];
+        
+
+    } ?>
+
     </div>
+
+<?php if(isset($sucessLogin)) echo $sucessLogin;
+?>
 
     <section id="goals-section">
         <h2>Set Your Daily Goals</h2>
@@ -55,13 +59,4 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-<?php
-
-session_start();
- if (isset($_SESSION['username'])) {
-    echo "hi " . htmlspecialchars($_SESSION['username']) . "👋";
-}
-
-?>
 

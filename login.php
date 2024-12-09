@@ -1,42 +1,40 @@
 <?php 
 
-include("database.php");  // incldue bascially ensures communciation between them and the action in html redirects
+include("database.php"); // Include database connection
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['username'], $_POST['password'])) {
 
-    $username = $_POST['username'];
+    $username = htmlspecialchars($_POST['username']);
     $password = $_POST['password'];
 
-     $stmt = $conn->prepare("SELECT * FROM userinfo WHERE username = ? AND password = ?");
-    
-    // Bind the username parameter
+    // Prepare and execute the SQL query
+    $stmt = $conn->prepare("SELECT * FROM userinfo WHERE username = ? AND password = ?");
     $stmt->bind_param("ss", $username, $password);
-
-    // Execute the statement
     $stmt->execute();
-
-    // Fetch the result 
-
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-
-        header("Location: index.php");
-    
-        echo  "hi " .  $username . " "; }
-        else {
-            echo "login not succesful. invalid rusername or password";
-        }
+        // Start a session and store the username
+        session_start();
+        $_SESSION['username'] = $username;
+        $_SESSION['password'] = $password;
+        $_SESSION['success'] = "Hi " . $username . "👋";
+        header("Location: index.php");  
+        exit;
+    } else {
+        echo "Login not successful. Invalid username or password.";
     }
 
 
+
+
+
+
+    $stmt->close();
+}
+
+$conn->close();
 ?>
-
-
-
-
-
-
 
 
 
