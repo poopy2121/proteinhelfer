@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 include("database.php"); // Include database connection
 
 if (isset($_POST['username'], $_POST['password'])) {
@@ -15,21 +17,15 @@ if (isset($_POST['username'], $_POST['password'])) {
 
     if ($result->num_rows > 0) {
         // Start a session and store the username
-        session_start();
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
-        $_SESSION['success'] = "Hi " . $username . "👋";
+        $_SESSION['successMessage'] = "Hi " . $username . "";
         header("Location: index.php");  
         exit;
     } else {
-        echo "Login not successful. Invalid username or password.";
+        
+        echo "wrong";
     }
-
-
-
-
-
-
     $stmt->close();
 }
 
